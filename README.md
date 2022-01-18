@@ -1,8 +1,9 @@
 # Covid Saarani (कोविड सारणी)
 
 This is the documentation for Covid Saarani (कोविड सारणी), which is an API /
-Dashboard for India's COVID-19 data fetched from Union Government's sources.
-Covid Saarani's data and workflow is _entirely_ on GitHub.
+Dashboard for India's COVID-19 data pieced together from multiple Union
+Government's sources. Covid Saarani's data and workflow is _entirely_ on
+GitHub.
 
 Prefer using this over directly spamming and parsing Government websites.
 
@@ -104,27 +105,27 @@ The JSON returned by API contains:
     "confirmed": {
         "current": (int) Total case count as of now.
         "previous": (int) Total case count on the previous day.
-        "new": (int) New confirmed cases in the last 24 hours.
+        "delta": (int) Change in confirmed cases in the last 24 hours.
     }
 
     "active": {
         "current": (int) Active case count as of now.
         "previous": (int) Active case count on the previous day.
-        "new": (int) New active cases in the last 24 hours.
+        "delta": (int) Change in active cases in the last 24 hours.
         "ratio_pc": (float, 5 digit precision) % of active cases in the total cases.
     }
 
     "recovered": {
         "current": (int) recovered case count as of now.
         "previous": (int) recovered case count on the previous day.
-        "new": (int) New recovered cases in the last 24 hours.
+        "delta": (int) Change in recovered cases in the last 24 hours.
         "ratio_pc": (float, 5 digit precision) % of recovered cases in the total cases.
     }
 
     "deaths": {
         "current": (int) Death count as of now.
         "previous": (int) Death count on the previous day.
-        "new": (int) New deaths in the last 24 hours.
+        "delta": (int) Change in deaths in the last 24 hours.
         "reconciled": (int) Reconciled deaths which were added to current day count.
         "ratio_pc": (float, 5 digit precision) % of deaths in the total cases.
     }
