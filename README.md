@@ -177,12 +177,18 @@ There is also a `Miscellaneous` key containing miscellaneous data.
 ---
 
 ```yaml
-"districts" {
-    "centers": (int) Total number of vaccination centers in the district.
-    "rat_pc": (int generally, but float possible) % of RAT tests out of total tests done.
-    "rtpcr_pc": (int generally, but float possible) % of RTPCR tests out of total tests done.
-    "positivity_rate": (float) The positivity rate of the district for the past week (See timestamp).
+"districts": {
+    "Full district name": {
+        "centers": (int) Total number of vaccination centers in the district.
+        "rat_pc": (int or float) % of RAT tests out of total tests done.
+        "rtpcr_pc": (int or float) % of RTPCR tests out of total tests done.
+        "positivity_rate": (float) The positivity rate of the district for the past week (See timestamp).
+    }
 }
 ```
+
+For national stats, there will be a district named `Aggregate`, containing the
+aggregate stats for all the districts. Thus, the national positivity rate and
+other stats can be retrieved.
 
 ---
