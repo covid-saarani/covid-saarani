@@ -9,7 +9,7 @@ Prefer using this over directly spamming and parsing Government websites.
 
 - Ease of use: Data from different streams is clubbed into one single structure.
 
-- Data is the same as shown on websites like that of MoHFW.
+- Data is the same as shown on websites like MyGov (preferred) or MoHFW's.
 
 - Advantage of the reliability of GitHub servers over government portals.
 
@@ -79,6 +79,7 @@ The JSON returned by API contains:
         "date": (str) Date corresponding to the case count.
         "as_on": (str) Data collection timestamp (data is as on this date and time).
         "last_updated_unix": (int) Epoch time of the last update time of data by the Government.
+                             This might not be present sometimes.
         "last_fetched_unix": (int) Epoch time of the last fetch time of data by Covid Saarani.
     }
 
@@ -138,7 +139,8 @@ The JSON returned by API contains:
 Note: For national stats, `All` is used in the state name field.
 Also, the district dict will be empty.
 
-There is also a `Miscellaneous` key containing miscellaneous data.
+There is also a `Miscellaneous` key containing miscellaneous data. Only data
+which is available for it will be non-zero, rest will be `0`.
 
 ---
 
@@ -175,6 +177,11 @@ There is also a `Miscellaneous` key containing miscellaneous data.
 }
 ```
 
+There is a very small chance of `new` key being `0` for states if previous day
+data is not available in the [सारणी](https://github.com/covid-saarani/saarani)
+repo and MyGov data is outdated simultaneously. It is unlikely to happen and
+persist for long, so you can consider the data to be reliable.
+
 ---
 
 ```yaml
@@ -188,8 +195,10 @@ There is also a `Miscellaneous` key containing miscellaneous data.
 }
 ```
 
-For national stats, there will be a district named `Aggregate`, containing the
-aggregate stats for all the districts. Thus, the national positivity rate and
-other stats can be retrieved.
+There will additionally be a district named `Aggregate` for all states and even
+the national data, containing the aggregate stats for all the districts. Thus,
+the national or statewide positivity rate and other stats can be retrieved.
+
+Note that national stats will only contain the `Aggregate` district.
 
 ---
