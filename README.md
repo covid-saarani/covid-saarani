@@ -76,25 +76,37 @@ The JSON returned by API contains:
 ```yaml
 "timestamp": {
     "cases": {
+        "primary_source": (str) Either "mygov" or "mohfw".
         "date": (str) Date corresponding to the case count.
         "as_on": (str) Data collection timestamp (data is as on this date and time).
+                 This will be present only if primary data source is MyGov.
         "last_updated_unix": (int) Epoch time of the last update time of data by the Government.
-                             This might not be present sometimes.
+                             This will be present only if primary data source is MyGov.
         "last_fetched_unix": (int) Epoch time of the last fetch time of data by Covid Saarani.
     }
 
     "vaccination": {
+        "primary_source": (str) Either "mygov" or "mohfw".
         "date": (str) Date corresponding to the vaccination count.
         "as_on": (str) Data collection timestamp (data is as on this date and time).
+                 This will be present only if primary data source is MyGov.
         "last_fetched_unix": (int) Epoch time of the last fetch time of data by Covid Saarani.
     }
 
     "districts": {
+        "primary_source": (str) "mohfw".
         "week": (str) Week of data (Last 7 days generally).
         "last_fetched_unix": (int) Epoch time of the last fetch time of data by Covid Saarani.
     }
 }
 ```
+
+Note: Data is fetched and set from both MyGov and MoHFW sources at any given
+point of time due to unavailability of entire breadth of data at one place.
+
+The `primary_source` key just tells which was the source from where the
+significant data (like case/vaccine counts, etc.) was taken from. For
+specifics, consider looking at [लिपिक](https://github.com/covid-saarani/lipik).
 
 ```yaml
 "Full State Name": {
@@ -126,7 +138,7 @@ The JSON returned by API contains:
     "deaths": {
         "current": (int) Death count as of now.
         "previous": (int) Death count on the previous day.
-        "delta": (int) Change in deaths in the last 24 hours.
+        "delta": (int) Change in deaths in the last 24 hours (including reconciled).
         "reconciled": (int) Reconciled deaths which were added to current day count.
         "ratio_pc": (float, 5 digit precision) % of deaths in the total cases.
     }
