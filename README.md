@@ -34,7 +34,8 @@ data = requests.get(url + requests.get(url + "latest.json").text).json()
 
 Since [लिपिक](https://github.com/covid-saarani/lipik) works on an hourly basis,
 one doesn't need to fetch repeatedly. Union Government's data anyways doesn't
-change much throughout the day.
+change much throughout the day, and once MyGov data is fetched no further
+fetching is done.
 
 ## Contents of the API
 
